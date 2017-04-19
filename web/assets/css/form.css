@@ -1,0 +1,23 @@
+.hidden {
+    visibility: hidden;
+}
+
+.shown {
+    visibility: visible;
+
+}
+.inputs{
+    width: 75%;
+}
+.uploads{
+    border-style: solid;
+    border-width: 2px;
+    border-color: forestgreen;
+    width: 35%;
+    cursor: pointer;
+
+}
+
+/*.fileUploadsIos, .fileUploadsAndroid, .fileUploadsAT, .fileUploadsAI{*/
+    /*display: none;*/
+/*}*/

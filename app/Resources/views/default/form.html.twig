@@ -1,0 +1,66 @@
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{%  extends "base.html.twig" %}
+
+
+
+{%  block body %}
+<h1>Mobile Submissions Forms</h1>
+<br><br>
+<div class="jumbotron">
+    {{ form_start(form) }}
+        {{ form_row(form.android) }}
+        {{ form_row(form.ios) }}
+        {{ form_row(form.appName, {'attr': {'class': 'inputs'}}) }}
+        {{ form_row(form.version, {'attr': {'class': 'inputs'}}) }}
+        {{ form_row(form.countries, {'attr': {'class': 'inputs'}}) }}
+        {{ form_row(form.descShort, {'attr': {'class': 'inputs hidden'}}) }}
+        {{ form_row(form.descLong, {'attr': {'class': 'inputs'}}) }}
+        {{ form_row(form.appUpdate, {'attr': {'class': ''}}) }}
+        {{ form_row(form.updateChanges, {'attr': {'class': 'inputs hidden'}}) }}
+        {{ form_row(form.keywords, {'attr': {'class': 'inputs'}}) }}
+        <div  class="fileUploadsAndroid hidden" >
+
+        {{ form_row(form.imgA1, {'attr': {'class': 'uploads btn btn-success'}}) }}
+        {{ form_row(form.imgA2, {'attr': {'class': 'uploads btn btn-success  '}}) }}
+        {{ form_row(form.imgA3, {'attr': {'class': 'uploads btn btn-success  '}}) }}
+            {{ form_row(form.tablette) }}
+        </div>
+    <div  class="fileUploadsIos hidden">
+        {{ form_row(form.imgI1, {'attr': {'class': 'uploads btn btn-success  '}}) }}
+        {{ form_row(form.imgI2, {'attr': {'class': 'uploads btn btn-success '}}) }}
+        {{ form_row(form.imgI3, {'attr': {'class': 'uploads btn btn-success '}}) }}
+        {{ form_row(form.ipad) }}
+    </div>
+
+    <div class="fileUploadsAT hidden">
+
+        {{ form_row(form.imgAT1, {'attr': {'class': 'uploads btn btn-success'}}) }}
+        {{ form_row(form.imgAT2, {'attr': {'class': 'uploads btn btn-success '}}) }}
+        {{ form_row(form.imgAT3, {'attr': {'class': 'uploads btn btn-success '}}) }}
+    </div>
+    <div class="fileUploadsAI hidden">
+
+        {{ form_row(form.imgAI1, {'attr': {'class': 'uploads btn btn-success '}}) }}
+        {{ form_row(form.imgAI2, {'attr': {'class': 'uploads btn btn-success '}}) }}
+        {{ form_row(form.imgAI3, {'attr': {'class': 'uploads btn btn-success '}}) }}
+    </div>
+        {{ form_row(form.webUrl, {'attr': {'class': 'inputs  '}}) }}
+        {{ form_row(form.assistanceUrl, {'attr': {'class': 'inputs  '}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'inputs  '}}) }}
+        {{ form_row(form.rules, {'attr': {'class': 'inputs  '}}) }}
+        {{ form_row(form.marketingUrl, {'attr': {'class': 'inputs  '}}) }}
+        {{ form_row(form.copyright, {'attr': {'class': 'inputs  '}}) }}
+    {{ form_row(form.author, {'attr': {'class': 'inputs'}}) }}
+    {{ form_row(form.save, {'attr': {'value': 'Envoyer le Formulaire', 'class': 'btn btn-primary'}}) }}
+
+
+    {#{{ form(form, {'attr': {'novalidate':'novalidate'}}) }}#}
+    {#{{ form(form, {'attr': {'novalidate':'novalidate'}}) }}#}
+    {#{{ form_label(form, 'android', {'label_attr': {'class': 'hidden'}}) }}#}
+
+    {#{{ form_widget(form) }}#}
+    {#{{ form_end(form) }}#}
+
+</div>
+
+{%  endblock %}
