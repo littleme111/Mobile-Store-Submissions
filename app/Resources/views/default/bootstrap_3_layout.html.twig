@@ -167,6 +167,7 @@
 {% endblock %}
 
 {% block checkbox_label -%}
+
     {{- block('checkbox_radio_label') -}}
 {%- endblock checkbox_label %}
 
@@ -236,6 +237,7 @@
 {%- endblock datetime_row %}
 
 {% block checkbox_row -%}
+
     <div class="form-group{% if not valid %} has-error{% endif %}">
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
@@ -262,3 +264,6 @@
     {% if form.parent %}</span>{% else %}</div>{% endif %}
     {%- endif %}
 {%- endblock form_errors %}
+
+{% if 'checkbox-inline' in parent_label_class %}
+    {{- form_label(form, null, { widget: parent() }) -}}

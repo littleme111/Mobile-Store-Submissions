@@ -28,22 +28,30 @@ class FormController extends Controller
      */
     public function formAction(Request $request)
     {
-        $forms = new Form();
+			$forms = new Form();
+			$date = new \DateTime('now');
+//        $forms->setCreatedDate($date);
 //
 			$usr = $this->getUser();
 			$username = $usr->getUsername();
 
+//			var_dump($date);
 			$form = $this->createForm(Form::class, $forms);
+
 			$form->get('author')->setData($username);
-        $form->handleRequest($request);
+//			$form->get('createdDate')->setData($date);
+			var_dump($form);
+//			$form->get("createdDate")->setData('0000-00-00');
+			$form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
             // but, the original `$task` variable has also been updated
             $task = $form->getData();
+            $task->setCreatedDate($date);
 
             // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
+            // for example, if Task is a Doctrine entity, save it!e
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
             $em->flush();

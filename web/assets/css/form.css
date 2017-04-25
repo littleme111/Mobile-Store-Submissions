@@ -8,16 +8,67 @@
 }
 .inputs{
     width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .uploads{
     border-style: solid;
     border-width: 2px;
-    border-color: forestgreen;
+    border-color: lightblue;
+    background-color: #d4dce6;
     width: 35%;
     cursor: pointer;
 
 }
-
+.jumbotron{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.labels{
+    margin-left: 15px;
+}
+/*.left{*/
+    /*margin-left: 15%;*/
+    /*width: 40%;*/
+    /*display: inline;*/
+/*}*/
+/*.left .form-group{}*/
+/*.right{*/
+    /*display: inline-block;*/
+    /*margin-left: 48%;*/
+    /*background-color: #0000F0;*/
+/*}*/
 /*.fileUploadsIos, .fileUploadsAndroid, .fileUploadsAT, .fileUploadsAI{*/
     /*display: none;*/
 /*}*/
+
+.fileUploadsIos, .fileUploadsAndroid{
+    margin-left: 9.5%;
+}
+.fileUploadsAI, .fileUploadsAT{
+    margin-right: 5.2%;
+}
+#form_imgA1, #form_imgA2, #form_imgA3,#form_imgI1, #form_imgI2, #form_imgI3{
+    width: 60%;
+}
+#form_imgAT1, #form_imgAT2, #form_imgAT3,#form_imgAI1, #form_imgAI2, #form_imgAI3{
+    width: 55%;
+}
+.separator{
+    height: 50px;
+    display: block;
+    border: solid 1px;
+}
+
+.form_descShort
+
+label[for="form_descShort"]{
+    display: none;
+}
+
+.url{
+    position: fixed;
+}

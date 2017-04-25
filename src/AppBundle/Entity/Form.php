@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -45,9 +47,9 @@ class Form extends AbstractType
             ))
 
             ->add('version', TextType::class, ['required' => false])
-            ->add('countries', TextType::class, ['required' => false])
-            ->add('descShort', TextAreaType::class, ['required' => false])
-            ->add('descLong', TextareaType::class, ['required' => false])
+					->add('countries', TextAreaType::class, ['required' => false])
+            ->add('descShort', TextAreaType::class, array('attr' => array('maxlength' => 80, 'required' => FALSE)))
+            ->add('descLong', TextareaType::class, array('attr' => array('required' => false, 'maxlength' => 4000)) )
             ->add('appUpdate', CheckboxType::class, ['required' => false])
             ->add('updateChanges', TextAreaType::class, ['required' => false])
             ->add('keywords', TextAreaType::class, ['required' => false])
@@ -73,9 +75,10 @@ class Form extends AbstractType
             ->add('rules', TextType::class, ['required' => false])
             ->add('marketingUrl', TextType::class, ['required' => false])
             ->add('copyright', TextType::class, ['required' => false])
-            ->add('save', SubmitType::class)
+						->add('createdDate', DateType::class)
 						->add('author', TextType::class)
-        ;
+					->add('save', SubmitType::class)
+				;
     }
 
 
@@ -140,7 +143,11 @@ class Form extends AbstractType
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+		 *   min = 0,
+		 *   max = 80,
+		 *   maxMessage = "Ce champ est limité a 80 charactères",
+		 * )
      * @ORM\Column(name="descLong", type="text", nullable=true)
      */
     private $descLong;
@@ -1028,4 +1035,16 @@ class Form extends AbstractType
     {
         return $this->createdDate;
     }
+
+
+    public function hydrate($array){
+			foreach($array as $key => $values){
+				$methode = "set".ucfirst($key);
+//				echo $values.'<br>';
+				if(method_exists($this, $methode) && count($values) > 0 && $methode != "createDate"){
+						$this->$methode($values);
+				}
+			}
+		}
+
 }

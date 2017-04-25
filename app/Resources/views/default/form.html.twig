@@ -1,4 +1,4 @@
-{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {%  extends "base.html.twig" %}
 
 
@@ -7,50 +7,180 @@
 <h1>Mobile Submissions Forms</h1>
 <br><br>
 <div class="jumbotron">
-    {{ form_start(form) }}
-        {{ form_row(form.android) }}
-        {{ form_row(form.ios) }}
-        {{ form_row(form.appName, {'attr': {'class': 'inputs'}}) }}
-        {{ form_row(form.version, {'attr': {'class': 'inputs'}}) }}
-        {{ form_row(form.countries, {'attr': {'class': 'inputs'}}) }}
-        {{ form_row(form.descShort, {'attr': {'class': 'inputs hidden'}}) }}
-        {{ form_row(form.descLong, {'attr': {'class': 'inputs'}}) }}
-        {{ form_row(form.appUpdate, {'attr': {'class': ''}}) }}
-        {{ form_row(form.updateChanges, {'attr': {'class': 'inputs hidden'}}) }}
-        {{ form_row(form.keywords, {'attr': {'class': 'inputs'}}) }}
-        <div  class="fileUploadsAndroid hidden" >
 
-        {{ form_row(form.imgA1, {'attr': {'class': 'uploads btn btn-success'}}) }}
-        {{ form_row(form.imgA2, {'attr': {'class': 'uploads btn btn-success  '}}) }}
-        {{ form_row(form.imgA3, {'attr': {'class': 'uploads btn btn-success  '}}) }}
-            {{ form_row(form.tablette) }}
-        </div>
-    <div  class="fileUploadsIos hidden">
-        {{ form_row(form.imgI1, {'attr': {'class': 'uploads btn btn-success  '}}) }}
-        {{ form_row(form.imgI2, {'attr': {'class': 'uploads btn btn-success '}}) }}
-        {{ form_row(form.imgI3, {'attr': {'class': 'uploads btn btn-success '}}) }}
-        {{ form_row(form.ipad) }}
-    </div>
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form._token) }}
 
-    <div class="fileUploadsAT hidden">
+    {{ form_widget(form.android) }}
+    {{ form_widget(form.ios) }}
 
-        {{ form_row(form.imgAT1, {'attr': {'class': 'uploads btn btn-success'}}) }}
-        {{ form_row(form.imgAT2, {'attr': {'class': 'uploads btn btn-success '}}) }}
-        {{ form_row(form.imgAT3, {'attr': {'class': 'uploads btn btn-success '}}) }}
-    </div>
-    <div class="fileUploadsAI hidden">
+    {{ form_label(form.appName, 'Nom de l\'Application',
+        {'label_attr': {'class': 'foo labels'}}) }}
+    {{ form_widget(form.appName, {'attr': {'class': 'input'}}) }}
 
-        {{ form_row(form.imgAI1, {'attr': {'class': 'uploads btn btn-success '}}) }}
-        {{ form_row(form.imgAI2, {'attr': {'class': 'uploads btn btn-success '}}) }}
-        {{ form_row(form.imgAI3, {'attr': {'class': 'uploads btn btn-success '}}) }}
-    </div>
-        {{ form_row(form.webUrl, {'attr': {'class': 'inputs  '}}) }}
-        {{ form_row(form.assistanceUrl, {'attr': {'class': 'inputs  '}}) }}
-        {{ form_row(form.email, {'attr': {'class': 'inputs  '}}) }}
-        {{ form_row(form.rules, {'attr': {'class': 'inputs  '}}) }}
-        {{ form_row(form.marketingUrl, {'attr': {'class': 'inputs  '}}) }}
-        {{ form_row(form.copyright, {'attr': {'class': 'inputs  '}}) }}
-    {{ form_row(form.author, {'attr': {'class': 'inputs'}}) }}
+    {{ form_label(form.version, 'Version de l\'Application',
+        {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.version) }}
+
+
+
+    {{ form_label(form.countries, 'Pays de Distribution',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.countries, {'attr': {'placeholder': 'Rentrez la liste des pays, séparés par des virgules.'}}) }}
+
+
+    {{ form_label(form.descShort, 'Description Courte',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.descShort, {'attr': {'placeholder': 'Limité a 80 caratères, suelement pour les applications android.'}}) }}
+    {{ form_errors(form.descShort) }}
+
+    {{ form_label(form.descLong, 'Description Longue',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.descLong, {'attr': {'placeholder': 'Limité a 4000 caratères'}}) }}
+    {{ form_errors(form.descLong) }}
+
+    {{ form_label(form.updateChanges, 'Nouveautés de la version',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.updateChanges, {'attr': {'placeholder': 'Ne remplir seulement si c\'est une mise a jour'}}) }}
+    {{ form_errors(form.updateChanges) }}
+
+    {{ form_label(form.keywords, 'Mots Clés',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.keywords, {'attr': {'placeholder': 'Entrez les mots clés qui permettront de trouver votre application sur le Sotre, séparés par des virgules.'}}) }}
+    {{ form_errors(form.keywords) }}
+
+
+    {{ form_label(form.imgA1, 'Screenshots d\'application Android, jusqu\'a 3 par type d\'appareil',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.imgA1, {'attr': {}}) }}
+    {{ form_widget(form.imgA2, {'attr': {}}) }}
+    {{ form_widget(form.imgA3, {'attr': {}}) }}
+    {{ form_errors(form.imgA1) }}
+    {{ form_errors(form.imgA2) }}
+    {{ form_errors(form.imgA3) }}
+
+    {{ form_label(form.imgI1, 'Screenshots d\'application Ios',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.imgI1, {'attr': {}}) }}
+    {{ form_widget(form.imgI2, {'attr': {}}) }}
+    {{ form_widget(form.imgI3, {'attr': {}}) }}
+    {{ form_errors(form.imgI1) }}
+    {{ form_errors(form.imgI2) }}
+    {{ form_errors(form.imgI3) }}
+
+
+    {{ form_label(form.imgAT1, 'Screenshots d\'application pour Tablette Android',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.imgAT1, {'attr': {}}) }}
+    {{ form_widget(form.imgAT2, {'attr': {}}) }}
+    {{ form_widget(form.imgAT3, {'attr': {}}) }}
+    {{ form_errors(form.imgAT1) }}
+    {{ form_errors(form.imgAT2) }}
+    {{ form_errors(form.imgAT3) }}
+
+    {{ form_label(form.imgAI1, 'Screenshots d\'application pour Ipad',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.imgAI1, {'attr': {}}) }}
+    {{ form_widget(form.imgAI2, {'attr': {}}) }}
+    {{ form_widget(form.imgAI3, {'attr': {}}) }}
+    {{ form_errors(form.imgAI1) }}
+    {{ form_errors(form.imgAI2) }}
+    {{ form_errors(form.imgAI3) }}
+
+
+    {{ form_label(form.webUrl, 'Url de l\'Application',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.webUrl, {'attr': {'placeholder': ''}}) }}
+    {{ form_errors(form.webUrl) }}
+
+    {{ form_label(form.assistanceUrl, 'Url de l\'asistance',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.assistanceUrl, {'attr': {'placeholder': ''}}) }}
+    {{ form_errors(form.assistanceUrl) }}
+
+    {{ form_label(form.email, 'E-mail de Contact',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.email, {'attr': {'placeholder': ''}}) }}
+    {{ form_errors(form.email) }}
+
+    {{ form_label(form.rules, 'Contrat de Confidentialité',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.rules, {'attr': {'placeholder': 'url'}}) }}
+    {{ form_errors(form.rules) }}
+
+    {{ form_label(form.marketingUrl, 'Url de Marketing',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.marketingUrl, {'attr': {'placeholder': 'url'}}) }}
+    {{ form_errors(form.marketingUrl) }}
+
+    {{ form_label(form.copyright, 'Url du Copyright',
+    {'label_attr': {'class': "foo labels"}}) }}
+    {{ form_widget(form.copyright, {'attr': {'placeholder': 'url'}}) }}
+    {{ form_errors(form.copyright) }}
+
+
+    {#{{ form_row(form.webUrl, {'attr': {'class': 'inputs'}}) }}#}
+    {#{{ form_row(form.assistanceUrl, {'attr': {'class': 'inputs  '}}) }}#}
+    {#{{ form_row(form.email, {'attr': {'class': 'inputs  '}}) }}#}
+    {#{{ form_row(form.rules, {'attr': {'class': 'inputs  '}}) }}#}
+    {#{{ form_row(form.marketingUrl, {'attr': {'class': 'inputs  '}}) }}#}
+    {#{{ form_row(form.copyright, {'attr': {'class': 'inputs  '}}) }}#}
+    {#<span class="author hidden">#}
+    {#{{ form_row(form.author, {'attr': {'class': 'inputs '}}) }}#}
+    {#</span>#}
+
+
+    {#<div class="inputs hidden descShort">#}
+        {#{{ form_label(form.descShort) }}#}
+        {#{{ form_errors(form.descShort) }}#}
+        {#{{ form_widget(form.descShort) }}#}
+    {#</div>#}
+        {#{{ form_row(form.descLong, {'attr': {'class': 'inputs'}}) }}#}
+        {#{{ form_row(form.appUpdate, {'attr': {'class': ''}}) }}#}
+        {#{{ form_row(form.updateChanges, {'attr': {'class': 'inputs hidden'}}) }}#}
+        {#{{ form_row(form.keywords, {'attr': {'class': 'inputs'}}) }}#}
+
+    {#<div  class="fileUploadsAndroid hidden pull-left col-lg-5" >#}
+        {#<span class="hidden spanA">Veuillez choisir les Captures d'écrans, a uploader, les images tablette ne sont pas obligatoires.</span>#}
+        {#{{ form_row(form.imgA1, {'attr': {'class': 'uploads btn btn-success'}}) }}#}
+        {#{{ form_row(form.imgA2, {'attr': {'class': 'uploads btn btn-success  '}}) }}#}
+        {#{{ form_row(form.imgA3, {'attr': {'class': 'uploads btn btn-success  '}}) }}#}
+
+    {#</div>#}
+
+    {#<div  class="fileUploadsAT hidden pull-right col-lg-5">#}
+        {#{{ form_row(form.imgAT1, {'attr': {'class': 'uploads btn btn-success'}}) }}#}
+        {#{{ form_row(form.imgAT2, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+        {#{{ form_row(form.imgAT3, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+
+
+    {#</div>#}
+
+
+    {#<div class="fileUploadsIos hidden  col-lg-5">#}
+        {#<span class="hidden spanI">Veuillez choisir les Captures d'écrans, a uploader, les images iPad ne sont pas obligatoires.</span>#}
+        {#{{ form_row(form.imgI1, {'attr': {'class': 'uploads btn btn-success  '}}) }}#}
+        {#{{ form_row(form.imgI2, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+        {#{{ form_row(form.imgI3, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+    {#</div>#}
+
+    {#<div class="fileUploadsAI hidden pull-right  col-lg-5">#}
+        {#{{ form_row(form.imgAI1, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+        {#{{ form_row(form.imgAI2, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+        {#{{ form_row(form.imgAI3, {'attr': {'class': 'uploads btn btn-success '}}) }}#}
+    {#</div>#}
+
+        {#{{ form_row(form.webUrl, {'attr': {'class': 'inputs'}}) }}#}
+        {#{{ form_row(form.assistanceUrl, {'attr': {'class': 'inputs  '}}) }}#}
+        {#{{ form_row(form.email, {'attr': {'class': 'inputs  '}}) }}#}
+        {#{{ form_row(form.rules, {'attr': {'class': 'inputs  '}}) }}#}
+        {#{{ form_row(form.marketingUrl, {'attr': {'class': 'inputs  '}}) }}#}
+        {#{{ form_row(form.copyright, {'attr': {'class': 'inputs  '}}) }}#}
+    <span class="author hidden">
+    {{ form_row(form.author, {'attr': {'class': 'inputs '}}) }}
+
+    </span>
     {{ form_row(form.save, {'attr': {'value': 'Envoyer le Formulaire', 'class': 'btn btn-primary'}}) }}
 
 
@@ -62,5 +192,4 @@
     {#{{ form_end(form) }}#}
 
 </div>
-
 {%  endblock %}

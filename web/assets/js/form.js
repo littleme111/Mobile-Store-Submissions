@@ -2,34 +2,35 @@
 
 $('#form_android').change(function(){
     if($(this).prop("checked")) {
-        $('.fileUploadsAndroid').removeClass('hidden');
-        // $('#fileUploadsAndroid').show();
+        $('.fileUploadsAT, .descShort, .form_tablette, .fileUploadsAndroid, .spanA').removeClass('hidden');
+
+
+        $('').removeClass('hidden');
     } else {
         // $('#hideDiv').hide();
-        $('.fileUploadsAndroid').addClass('hidden');
-        $('.fileUploadsAT').addClass('hidden');
+        $('.fileUploadsAT, .descShort, .form_tablette, .fileUploadsAndroid, .spanA').addClass('hidden');
     }
+
 });
 $('#form_ios').change(function(){
     if($(this).prop("checked")) {
-        $('.fileUploadsIos').removeClass('hidden');
-        // $('#fileUploadsAndroid').show();
+        $('.spanI, .fileUploadsIos, .fileUploadsAI').removeClass('hidden');
     } else {
-        // $('#hideDiv').hide();
-        $('.fileUploadsIos').addClass('hidden');
-        $('.fileUploadsAI').addClass('hidden');
+        $('.spanI, .fileUploadsAI, .fileUploadsIos').addClass('hidden');
     }
 });
 
 $('#form_ipad').change(function(){
     if($(this).prop("checked")) {
-        $('.fileUploadsAI').removeClass('hidden');
+
+
         // $('#fileUploadsAndroid').show();
     } else {
         // $('#hideDiv').hide();
-        $('.fileUploadsAI').addClass('hidden');
+
     }
-});$('#form_tablette').change(function(){
+});
+$('#form_tablette').change(function(){
     if($(this).prop("checked")) {
         $('.fileUploadsAT').removeClass('hidden');
         // $('#fileUploadsAndroid').show();

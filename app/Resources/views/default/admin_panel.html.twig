@@ -1,8 +1,32 @@
 {%  extends "base.html.twig" %}
 
 {%  block body %}
-    <h3>Hello Admin</h3>
-    {%  for data in formdata %}
-        <li>Application Name : {{ data.appName }}</li>
+    {#<h3>Hello {{ username }}: </h3>#}
+
+    <table class="table">
+        <th>Nom :</th>
+        <th>Date : </th>
+        <th>Description :</th>
+        <th>Créé par :</th>
+        <th>Editer :</th>
+        {%  for data in formdata %}
+            <tr>
+                <td>{{ data.appName }}</td>
+                <td>{{ data.createdDate|date("d/m/Y")}}</td>
+                <td>{{ data.descLong}}</td>
+                <td>{{ data.author}}</td>
+                <td><a href="/stores_php/web/app_dev.php/modify/{{data.id}}">Modifier</a></td>
+
+            </tr>
         {%  endfor %}
+    </table>
+
+
+
+
+
+
+    {#<li>Application Name : {{ data.appName }}</li>#}
+
+
 {%  endblock %}
